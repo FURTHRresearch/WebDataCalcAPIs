@@ -39,4 +39,4 @@ class APIv1:
     def setResult(self, result):
         url = self.target + \
             f"/fields/{self.config['fieldId']}/webdatacalcresults"
-        return self.session.post(url, json=result).json()
+        return self.session.post(url, json=result)
