@@ -3,7 +3,7 @@
 import requests
 
 
-class API:
+class APIv1:
     def __init__(self, config):
         self.target = config['callbackUrl']
         self.key = config['apiKey']
