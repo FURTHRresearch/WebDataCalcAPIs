@@ -1,14 +1,13 @@
-# API v1
-
 import requests
 
 
 class APIv1:
     def __init__(self, config):
+        self.config = config
+        self.session = requests.session()
+        self.session.headers.update({"X-Access-Token": config['apiKey'],
+                                     'Content-type': 'application/json'})
         self.target = config['callbackUrl']
-        self.key = config['apiKey']
-        self.headers = {'Content-Type': 'application/json',
-                        'X-API-Key': self.key}
 
     def getRawData(self, id):
         url = self.target + "/rawdata/" + id
@@ -36,3 +35,8 @@ class APIv1:
             'value': fieldValue
         }
         return requests.post(url, headers=self.headers, json=data).json()
+
+    def setResult(self, result):
+        url = self.target + \
+            f"/fields/{self.config['fieldId']}/webdatacalcresults"
+        return self.session.post(url, json=result).json()
