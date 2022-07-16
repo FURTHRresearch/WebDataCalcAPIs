@@ -38,5 +38,5 @@ class APIv1:
 
     def setResult(self, result):
         url = self.target + \
-            f"/fields/{self.config['fieldId']}/webdatacalcresults"
+            f"/fields/{self.config['fieldId']}/calculationresults"
         return self.session.post(url, json=result)
