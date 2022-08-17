@@ -10,19 +10,19 @@ class APIv1:
 
     def getRawData(self, id):
         url = self.target + "/rawdata/" + id
-        return requests.get(url, headers=self.headers).json()
+        return self.session.get(url).json()
 
     def getSample(self, id):
         url = self.target + "/samples/" + id
-        return requests.get(url, headers=self.headers).json()
+        return self.session.get(url).json()
 
     def getExperiment(self, id):
         url = self.target + "/experiments/" + id
-        return requests.get(url, headers=self.headers).json()
+        return self.session.get(url).json()
 
     def getFile(self, id):
         url = self.target + "/files/" + id
-        return requests.get(url, headers=self.headers).content
+        return self.session.get(url).content
 
     def setFieldValue(self, targetType, targetId, fieldName, fieldValue, fieldType='Numeric'):
         if targetType != "experiments":
@@ -33,7 +33,7 @@ class APIv1:
             'fieldType': fieldType,
             'value': fieldValue
         }
-        return requests.post(url, headers=self.headers, json=data).json()
+        return self.session.post(url, json=data).json()
 
     def setResult(self, result):
         url = self.target + \
