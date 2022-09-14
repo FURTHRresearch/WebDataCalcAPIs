@@ -5,7 +5,7 @@ class APIv1:
     def __init__(self, config):
         self.config = config
         self.session = requests.session()
-        self.session.headers.update({"X-API-Key": config['apiKey']})
+        self.session.headers.update({"X-API-KEY": config['apiKey']})
         self.target = config['callbackUrl']
 
     def getRawData(self, id):
