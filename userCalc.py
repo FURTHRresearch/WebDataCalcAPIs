@@ -1,3 +1,5 @@
+import os
+
 from furthrapi import APIv1
 from FileLoader import FileLoader
 import requests
@@ -38,6 +40,16 @@ def calc(config):
     print("field_id: ", field["fieldid"])            # id of field definition, type name etc
     print("field_name: ", field["fieldname"])
 
+    # downloading a file
+    files = exp["files"]
+    if files:
+        file = files[0]
+        file_id = file["id"]
+        file_loader = FileLoader(config["callbackUrl"], config["apiKey"])
+        folder = os.getcwd()
+        file_loader.downloadFile(file_id, folder)
+        print("File exists: ", os.path.isfile(f"{folder}/{file['name']}"))
+
     # getting all groups
     url = f"{base_url}/project/{config['projectId']}/groups"
     response = session.get(url)
@@ -48,5 +60,6 @@ def calc(config):
 
     print("number of exp: ", len(group["experiments"]))
     print("name and id of first exp: ", group["experiments"][0]["name"],group["experiments"][0]["id"])
+
 
 
