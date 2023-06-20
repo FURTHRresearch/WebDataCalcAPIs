@@ -61,5 +61,11 @@ def calc(config):
     print("number of exp: ", len(group["experiments"]))
     print("name and id of first exp: ", group["experiments"][0]["name"],group["experiments"][0]["id"])
 
+    # write new calc result
+    url = url = f"{base_url}/set-result/{config['fieldId']}"
+    result = {"key": "value",
+              "key2": "value2"}
+    session.post(url, json=result)
+
 
 
