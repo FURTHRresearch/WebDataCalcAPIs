@@ -49,15 +49,4 @@ def calc(config):
     print("number of exp: ", len(group["experiments"]))
     print("name and id of first exp: ", group["experiments"][0]["name"],group["experiments"][0]["id"])
 
-if __name__ == "__main__":
-    config = {'projectId': '631893e1ca17478734063e5b',
-              'groupId': '63189479ca1747873406e77a',
-              'sampleId': '63189479ca1747873406e9cc',
-              'experimentId': '6318947eca1747873406fbec',
-              'rawdataId': '63189534ca174787340985a6',
-              # 'callbackUrl': 'https://test.furthrmind.app',
-              'callbackUrl': 'http://127.0.0.1:5000',
-              'apiKey': 'E8WHB1EQE4S44SK0D04AS4RY2EHQX8OB',
-              'fieldId': '636285c0cafe2adcd010fdea'}
 
-    calc(config)
