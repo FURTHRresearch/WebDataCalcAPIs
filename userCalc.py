@@ -35,10 +35,11 @@ def calc(config):
     print("keys of experiment: ", exp.keys())
 
     # getting all fields of an experiment
-    field = exp["fielddata"][0]
-    print("field_data_id: ", field["id"])
-    print("field_id: ", field["fieldid"])            # id of field definition, type name etc
-    print("field_name: ", field["fieldname"])
+    if exp["fielddata"]:
+        field = exp["fielddata"][0]
+        print("field_data_id: ", field["id"])
+        print("field_id: ", field["fieldid"])            # id of field definition, type name etc
+        print("field_name: ", field["fieldname"])
 
     # downloading a file
     files = exp["files"]
@@ -59,10 +60,11 @@ def calc(config):
     group = response["results"][0]  # request results
 
     print("number of exp: ", len(group["experiments"]))
-    print("name and id of first exp: ", group["experiments"][0]["name"],group["experiments"][0]["id"])
+    if group["experiments"]:
+        print("name and id of first exp: ", group["experiments"][0]["name"],group["experiments"][0]["id"])
 
     # write new calc result
-    url = url = f"{base_url}/set-result/{config['fieldId']}"
+    url = f"{base_url}/set-result/{config['fieldId']}"
     result = {"key": "value",
               "key2": "value2"}
     session.post(url, json=result)
